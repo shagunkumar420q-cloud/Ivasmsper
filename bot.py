@@ -1,7 +1,7 @@
 # ╔══════════════════════════════════════════════════════════════╗
-# ║     Junaid OTP Bot — Full System Bot                        ║
+# ║     KITE OTP Bot — Full System Bot                        ║
 # ║     Numbers + OTP Forwarding + Full Admin Suite             ║
-# ║     Developed by Junaid (@Junaidniz786)                    ║
+# ║     Developed by Junaid (@payment_owner)                    ║
 # ╚══════════════════════════════════════════════════════════════╝
 
 import asyncio
@@ -722,14 +722,14 @@ def format_otp_code(code: str) -> str:
     mid = n // 2
     return code[:mid] + "-" + code[mid:]
 
-def format_number_Junaid_OTP(number: str) -> str:
+def format_number_Kite_OTP(number: str) -> str:
     """Format full number as: 4915511-Junaid-03543"""
     digits = re.sub(r"[^0-9]", "", number)
     if len(digits) >= 12:
         return f"{digits[:7]}-Junaid-{digits[-5:]}"
     elif len(digits) >= 7:
         mid = len(digits) - 5
-        return f"{digits[:mid]}-Junaid-{digits[-5:]}"
+        return f"{digits[:mid]}-KITE-{digits[-5:]}"
     return digits
 
 def format_otp_message(number: str, service: str, otp: str,
