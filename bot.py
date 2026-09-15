@@ -723,13 +723,13 @@ def format_otp_code(code: str) -> str:
     return code[:mid] + "-" + code[mid:]
 
 def format_number_Kite_OTP(number: str) -> str:
-    """Format full number as: 4915511-Junaid-03543"""
+    """Format full number as: 4915511-Kite-03543"""
     digits = re.sub(r"[^0-9]", "", number)
     if len(digits) >= 12:
-        return f"{digits[:7]}-Junaid-{digits[-5:]}"
+        return f"{digits[:7]}-Kite-{digits[-5:]}"
     elif len(digits) >= 7:
         mid = len(digits) - 5
-        return f"{digits[:mid]}-KITE-{digits[-5:]}"
+        return f"{digits[:mid]}-Kite-{digits[-5:]}"
     return digits
 
 def format_otp_message(number: str, service: str, otp: str,
@@ -744,7 +744,7 @@ def format_otp_message(number: str, service: str, otp: str,
     country_custom_emoji = get_custom_country_emoji(region)
     app_custom_emoji     = get_app_emoji(service)
 
-    Junaid_OTP_number = format_number_Junaid_OTP(number)
+    Kite_OTP_number = format_number_Junaid_OTP(number)
     lang = detect_language_from_text(sms_text) or REGION_LANGUAGE.get(region, "English")
 
     lang_emoji = '<tg-emoji emoji-id="5388632425314140043">🌐</tg-emoji>'
@@ -753,7 +753,7 @@ def format_otp_message(number: str, service: str, otp: str,
         chr(ord(c) + 0x1D400 - ord('A')) if 'A' <= c <= 'Z' else
         chr(ord(c) + 0x1D41A - ord('a')) if 'a' <= c <= 'z' else
         chr(ord(c) + 0x1D7CE - ord('0')) if '0' <= c <= '9' else c
-        for c in Junaid_OTP_number
+        for c in Kite_OTP_number
     )
     base = (f"{country_custom_emoji} ┃ {app_custom_emoji}"
             f"  <b>#{region}</b>  {bold_num}  {lang_emoji}<b>#{lang}</b>")
@@ -779,9 +779,9 @@ def get_otp_keyboard(number: str, otp: str) -> dict:
         otp_row = [{"text": "No OTP Detected", "callback_data": "no_otp"}]
     return {"inline_keyboard": [
         otp_row,
-        [{"text": " 𝗡𝘂𝗺𝗯𝗲𝗿𝘀", "url": "https://t.me/junaidaliniz",
+        [{"text": " 𝗡𝘂𝗺𝗯𝗲𝗿𝘀", "url": "https://t.me/kitenumber",
           "icon_custom_emoji_id": PHONE_EMOJI, "style": "danger"},
-         {"text": " 𝗖𝗵𝗮𝘁",    "url": "https://t.me/+DrBDJM9-nvAyMjRk",
+         {"text": " 𝗖𝗵𝗮𝘁",    "url": "https://t.me/kitechatt",
           "icon_custom_emoji_id": CHAT_EMOJI,  "style": "primary"}],
     ]}
 
